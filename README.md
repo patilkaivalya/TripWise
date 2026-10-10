@@ -37,20 +37,31 @@ Planning a trip often means switching between flight-search sites, hotel listing
 
 ## How it works
 
-```mermaid
-flowchart TD
-    A[Trip form: route, dates, travellers, budget] --> B[React frontend]
-    B --> C[Flask REST API]
-    C --> D[SerpApi search services]
-    D --> E[Flight results]
-    D --> F[Hotel results and photos]
-    D --> G[Nearby restaurants and places]
-    E --> H[User selects trip options]
-    F --> H
-    G --> H
-    H --> I[Budget estimates]
-    I --> J[Day-by-day itinerary]
-    J --> K[Print / Save as PDF]
+1. **Enter trip details.** Provide your origin, destination, travel dates, number of travellers, and budget.
+2. **Search flights.** The React frontend sends requests to the Flask API, which uses SerpApi to retrieve available Google Flights results.
+3. **Choose a hotel.** TripWise searches Google Hotels results for the destination and dates, including available pricing, ratings, amenities, and photos.
+4. **Discover nearby places.** After a hotel is selected, the backend searches for nearby restaurants and attractions.
+5. **Review the budget.** TripWise combines flight and hotel prices with estimates for food, local transport, and activities.
+6. **Build and export the itinerary.** The app arranges a day-by-day plan from the trip selections and lets the user print or save it as a PDF.
+
+### Request flow
+
+The frontend does not call SerpApi directly. Search requests follow this path:
+
+```text
+React frontend
+    |
+    v
+Flask REST API
+    |
+    v
+SerpApi search services
+    |
+    v
+Normalized results returned to React
+    |
+    v
+Trip selections -> Budget estimate -> Day-by-day itinerary -> PDF export
 ```
 
 ## Repository structure
