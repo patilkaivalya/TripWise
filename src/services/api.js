@@ -1,17 +1,24 @@
+
 import axios from "axios";
 
+// Vite exposes environment variables prefixed with VITE_ to the client.
+// Local development falls back to the current Flask API address.
+const configuredApiBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+
+const API_BASE_URL = (
+  configuredApiBaseUrl || "http://127.0.0.1:5000/api"
+).replace(/\/+$/, "");
+
 const API = axios.create({
-  baseURL: "http://127.0.0.1:5000/api",
+  baseURL: API_BASE_URL,
+  timeout: 60000,
 });
 
 export const getLocationSuggestions = async (query) => {
-  console.log("Calling location API:", query);
-
   const response = await API.get("/locations/autocomplete", {
     params: { q: query },
   });
 
-  console.log("Location API response:", response.data);
   return response.data?.suggestions || [];
 };
 

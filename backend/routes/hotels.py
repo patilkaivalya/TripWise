@@ -2,13 +2,14 @@ from datetime import date
 
 from flask import Blueprint, jsonify, request
 from flask_cors import cross_origin
+from cors_config import FRONTEND_ORIGINS
 
 from services.serpapi_service import serpapi_search
 
 
 hotels_bp = Blueprint("hotels", __name__)
 
-FRONTEND_ORIGIN = "http://localhost:5174"
+FRONTEND_ORIGIN = FRONTEND_ORIGINS[0] if FRONTEND_ORIGINS else "*"
 MAX_HOTEL_TRAVELLERS = 6
 
 

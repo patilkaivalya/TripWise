@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_cors import cross_origin
+from cors_config import FRONTEND_ORIGINS
 
 from services.serpapi_service import serpapi_search
 
@@ -8,7 +9,7 @@ locations_bp = Blueprint("locations", __name__)
 
 
 @locations_bp.get("/autocomplete")
-@cross_origin(origins="http://localhost:5174")
+@cross_origin(origins=FRONTEND_ORIGINS)
 def autocomplete():
     """
     GET /api/locations/autocomplete?q=Mumbai

@@ -1,6 +1,7 @@
 
 from flask import Flask, jsonify
 from flask_cors import CORS
+from cors_config import FRONTEND_ORIGINS
 
 from routes.hotels import hotels_bp
 from routes.flights import flights_bp
@@ -19,7 +20,7 @@ CORS(
     app,
     resources={
         r"/api/*": {
-            "origins": "*"
+            "origins": FRONTEND_ORIGINS
         }
     }
 )

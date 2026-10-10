@@ -4,12 +4,13 @@ from urllib.parse import quote_plus
 
 from flask import Blueprint, jsonify, request
 from flask_cors import cross_origin
+from cors_config import FRONTEND_ORIGINS
 
 from services.serpapi_service import serpapi_search
 
 
 discovery_bp = Blueprint("discovery", __name__)
-FRONTEND_ORIGIN = "http://localhost:5174"
+FRONTEND_ORIGIN = FRONTEND_ORIGINS[0] if FRONTEND_ORIGINS else "*"
 SEARCH_RADIUS_KM = 5.0
 MAX_RESULTS_PER_CATEGORY = 5
 
