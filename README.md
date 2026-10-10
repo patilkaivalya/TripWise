@@ -8,6 +8,9 @@
 [![Flask](https://img.shields.io/badge/Flask-REST_API-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 [![SerpApi](https://img.shields.io/badge/Search-SerpApi-2E6E9E)](https://serpapi.com/)
 
+🌐 **Live Demo**: https://trip-wise-psi.vercel.app/          
+💻 **Source Code**: https://github.com/patilkaivalya/TripWise
+
 ## Overview
 
 Planning a trip often means switching between flight-search sites, hotel listings, maps, restaurants, and spreadsheets. TripWise combines these steps into a single guided experience: enter a route and dates, compare flight options, choose a hotel, discover nearby places, review the estimated budget, and prepare a printable itinerary.
