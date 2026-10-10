@@ -9,7 +9,6 @@ from services.serpapi_service import serpapi_search
 
 hotels_bp = Blueprint("hotels", __name__)
 
-FRONTEND_ORIGIN = FRONTEND_ORIGINS[0] if FRONTEND_ORIGINS else "*"
 MAX_HOTEL_TRAVELLERS = 6
 
 
@@ -72,7 +71,7 @@ def extract_hotel_image_urls(property_data):
 # ============================================================
 
 @hotels_bp.post("/search")
-@cross_origin(origins=FRONTEND_ORIGIN)
+@cross_origin(origins=FRONTEND_ORIGINS)
 def search_hotels():
     data = request.get_json(silent=True) or {}
 

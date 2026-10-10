@@ -8,7 +8,6 @@ from services.serpapi_service import serpapi_search
 
 
 flights_bp = Blueprint("flights", __name__)
-FRONTEND_ORIGIN = FRONTEND_ORIGINS[0] if FRONTEND_ORIGINS else "*"
 
 
 # ============================================================
@@ -161,7 +160,7 @@ def empty_results_message():
 # ============================================================
 
 @flights_bp.get("/autocomplete")
-@cross_origin(origins=FRONTEND_ORIGIN)
+@cross_origin(origins=FRONTEND_ORIGINS)
 def flight_autocomplete():
     query = request.args.get("q", "").strip()
     if len(query) < 2:
@@ -213,7 +212,7 @@ def flight_autocomplete():
 # ============================================================
 
 @flights_bp.post("/search")
-@cross_origin(origins=FRONTEND_ORIGIN)
+@cross_origin(origins=FRONTEND_ORIGINS)
 def flight_search():
     data = request.get_json(silent=True) or {}
 
@@ -296,7 +295,7 @@ def flight_search():
 # ============================================================
 
 @flights_bp.post("/returns")
-@cross_origin(origins=FRONTEND_ORIGIN)
+@cross_origin(origins=FRONTEND_ORIGINS)
 def return_flights():
     data = request.get_json(silent=True) or {}
 
@@ -359,7 +358,7 @@ def return_flights():
 # ============================================================
 
 @flights_bp.post("/booking-options")
-@cross_origin(origins=FRONTEND_ORIGIN)
+@cross_origin(origins=FRONTEND_ORIGINS)
 def flight_booking_options():
     data = request.get_json(silent=True) or {}
 

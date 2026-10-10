@@ -10,7 +10,6 @@ from services.serpapi_service import serpapi_search
 
 
 discovery_bp = Blueprint("discovery", __name__)
-FRONTEND_ORIGIN = FRONTEND_ORIGINS[0] if FRONTEND_ORIGINS else "*"
 SEARCH_RADIUS_KM = 5.0
 MAX_RESULTS_PER_CATEGORY = 5
 
@@ -401,7 +400,7 @@ def choose_top_places(
 # ============================================================
 
 @discovery_bp.post("/search")
-@cross_origin(origins=FRONTEND_ORIGIN)
+@cross_origin(origins=FRONTEND_ORIGINS)
 def search_discovery():
     data = request.get_json(silent=True) or {}
 
